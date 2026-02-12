@@ -1,2 +1,4 @@
 # pixelbit
-Bit
+Bit runs away
+Bit says Yes 
+Bit says No
