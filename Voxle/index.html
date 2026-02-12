@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voxle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="voxle-scoreboard" class="voxle-scoreboard">
+    <span class="voxle-score-label">Score</span>
+    <span id="voxle-score" class="voxle-score">0</span>
+  </div>
+  <div id="voxle-hud" class="voxle-hud">
+    <span>WASD/Arrows: Move · Mouse/Swipe: Look</span>
+    <a href="https://steveketchen.com" target="_blank" rel="noopener noreferrer" class="voxle-credit">By Steve Ketchen</a>
+  </div>
+  <div id="voxle-container"></div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" crossorigin="anonymous"></script>
+  <script src="js/voxle.js"></script>
+</body>
+</html>
