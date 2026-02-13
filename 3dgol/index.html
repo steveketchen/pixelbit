@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AeroGol 1.0 — Game of Life</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="gol-container"></div>
+
+  <header class="gol-title">
+    <h1 class="gol-title-main">AeroGol 1.0</h1>
+    <p class="gol-title-sub">A modified Game of Life experiment</p>
+    <p class="gol-credit">
+      By <a href="https://steveketchen.com" target="_blank" rel="noopener">Steve Ketchen</a>
+    </p>
+  </header>
+
+  <div id="gol-controls" class="gol-controls">
+    <div class="gol-bar">
+      <div class="gol-group gol-seed">
+        <span class="gol-label">Seed</span>
+        <div class="gol-field">
+          <span class="gol-field-name">Cluster</span>
+          <input type="range" id="gol-cluster-size" min="4" max="10" value="6">
+          <input type="number" id="gol-cluster-size-num" min="4" max="10" value="6">
+        </div>
+        <div class="gol-field">
+          <span class="gol-field-name">X</span>
+          <input type="range" id="gol-x" min="1" max="64" value="32">
+          <input type="number" id="gol-x-num" min="1" max="64" value="32">
+        </div>
+        <div class="gol-field">
+          <span class="gol-field-name">Y</span>
+          <input type="range" id="gol-y" min="1" max="64" value="32">
+          <input type="number" id="gol-y-num" min="1" max="64" value="32">
+        </div>
+        <div class="gol-field">
+          <span class="gol-field-name">Z</span>
+          <input type="range" id="gol-z" min="1" max="64" value="32">
+          <input type="number" id="gol-z-num" min="1" max="64" value="32">
+        </div>
+      </div>
+      <div class="gol-divider"></div>
+      <div class="gol-group gol-actions">
+        <button type="button" id="gol-go" class="gol-btn gol-btn-primary gol-btn-icon" title="Go">▶︎</button>
+        <div id="gol-runtime" class="gol-runtime">
+          <button type="button" id="gol-pause" class="gol-btn gol-btn-icon" title="Pause">⏸</button>
+          <button type="button" id="gol-step-fwd" class="gol-btn gol-btn-icon" title="Step forward">⏭</button>
+          <button type="button" id="gol-reset" class="gol-btn gol-btn-icon" title="Reset">↺</button>
+        </div>
+      </div>
+      <div class="gol-status-wrap">
+        <p id="gol-status" class="gol-status">SET SEED. PRESS GO.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="js/gol.js"></script>
+</body>
+</html>
