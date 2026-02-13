@@ -135,8 +135,8 @@
     });
     document.addEventListener("mousemove", (e) => {
       if (!isPointerLocked) return;
-      yaw -= e.movementX * MOUSE_SENSITIVITY;
-      pitch -= e.movementY * MOUSE_SENSITIVITY;
+      yaw += e.movementX * MOUSE_SENSITIVITY;
+      pitch += e.movementY * MOUSE_SENSITIVITY;
       pitch = Math.max(-PITCH_LIMIT, Math.min(PITCH_LIMIT, pitch));
     });
 
@@ -153,8 +153,8 @@
         const dy = e.touches[0].clientY - lastTouchY;
         lastTouchX = e.touches[0].clientX;
         lastTouchY = e.touches[0].clientY;
-        yaw -= dx * MOUSE_SENSITIVITY * 1.5;
-        pitch -= dy * MOUSE_SENSITIVITY * 1.5;
+        yaw += dx * MOUSE_SENSITIVITY * 1.5;
+        pitch += dy * MOUSE_SENSITIVITY * 1.5;
         pitch = Math.max(-PITCH_LIMIT, Math.min(PITCH_LIMIT, pitch));
         e.preventDefault();
       }
@@ -194,6 +194,31 @@
     obj.mesh.position.copy(randomPosition());
     obj.mesh.visible = true;
     greenCubes.push(obj);
+  }
+
+  function playCollectSound() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const now = ctx.currentTime;
+      const osc1 = ctx.createOscillator();
+      const osc2 = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc1.type = "sine";
+      osc1.frequency.setValueAtTime(523, now);
+      osc1.frequency.exponentialRampToValueAtTime(1047, now + 0.08);
+      osc2.type = "sine";
+      osc2.frequency.setValueAtTime(659, now);
+      osc2.frequency.exponentialRampToValueAtTime(1319, now + 0.08);
+      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(ctx.destination);
+      osc1.start(now);
+      osc2.start(now);
+      osc1.stop(now + 0.15);
+      osc2.stop(now + 0.15);
+    } catch (_) {}
   }
 
   function aabbOverlap(aPos, aSize, bPos, bSize) {
@@ -278,6 +303,7 @@
         greenCubes.splice(i, 1);
         score++;
         scoreEl.textContent = String(score);
+        playCollectSound();
       }
     }
 
